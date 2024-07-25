@@ -6,13 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import MyContextProvider from './Components/Context/auth.context';
 import { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
+import Store from './Components/redux/store';
+import MyAdminContextProvider from './UserAdmin/authContext';
+import MyContextProvider1 from './Backend/authContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <MyContextProvider>
+     <MyAdminContextProvider>
+     <MyContextProvider1>
   <BrowserRouter>
   <React.StrictMode>
+  <Provider store={Store}>  
   <Toaster
             position="top-center"
             reverseOrder={false}
@@ -41,8 +48,13 @@ root.render(
 
 
     <App />
+    
+    </Provider>
+  
   </React.StrictMode>
   </BrowserRouter>
+  </MyContextProvider1>
+  </MyAdminContextProvider>
   </MyContextProvider>
 );
 
